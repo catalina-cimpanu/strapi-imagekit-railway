@@ -17,17 +17,16 @@ module.exports = {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  async bootstrap({ strapi }) {
-    for (let i = 0; i < 30; i++) {
-      await strapi.entityService.create("api::person.person", {
-        data: {
-          name: faker.person.fullName(),
-          bio: faker.person.bio(),
-          birthday: faker.date.past(),
-          age: faker.number.int({ min: 0, max: 100 }),
-          // nationality: faker.location.country(),
-        },
-      });
-    }
-  },
+  // async bootstrap({ strapi }) {
+  //   for (let i = 0; i < 3; i++) {
+  //     await strapi.entityService.create("api::person.person", {
+  //       data: {
+  //         name: faker.person.fullName(),
+  //         bio: faker.person.bio(),
+  //         birthday: faker.date.past(),
+  //         age: faker.number.int({ min: 0, max: 100 }),
+  //       },
+  //     });
+  //   }
+  // },
 };
