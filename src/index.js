@@ -18,7 +18,7 @@ module.exports = {
    * run jobs, or perform some special logic.
    */
   async bootstrap({ strapi }) {
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 30; i++) {
       await strapi.entityService.create("api::person.person", {
         data: {
           name: faker.person.fullName(),
