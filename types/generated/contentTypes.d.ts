@@ -362,12 +362,48 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiNationalityNationality extends Schema.CollectionType {
+  collectionName: 'nationalities';
+  info: {
+    singularName: 'nationality';
+    pluralName: 'nationalities';
+    displayName: 'Nationality';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    nationality_name: Attribute.String;
+    people: Attribute.Relation<
+      'api::nationality.nationality',
+      'oneToMany',
+      'api::person.person'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::nationality.nationality',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::nationality.nationality',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPersonPerson extends Schema.CollectionType {
   collectionName: 'people';
   info: {
     singularName: 'person';
     pluralName: 'people';
     displayName: 'person';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -379,6 +415,14 @@ export interface ApiPersonPerson extends Schema.CollectionType {
         min: 0;
         max: 110;
       }>;
+    nationality: Attribute.Relation<
+      'api::person.person',
+      'manyToOne',
+      'api::nationality.nationality'
+    >;
+    birthday: Attribute.Date;
+    bio: Attribute.RichText &
+      Attribute.DefaultTo<'Proin eget bibendum est, at maximus nibh. Phasellus elementum, lorem et faucibus sodales, libero est dapibus sem, sed varius ipsum lectus eu quam. Donec dictum ultrices libero vitae iaculis. Nulla blandit erat rutrum ante pretium, eleifend pellentesque ligula vulputate. Nulla pellentesque dui porta quam commodo scelerisque. Phasellus non risus ac lacus scelerisque pretium. In elementum libero cursus, porttitor eros nec, semper metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed congue eget sapien id rutrum. Nullam vel magna sed purus dictum eleifend. Aenean euismod nibh felis, quis condimentum neque malesuada vitae. Nunc sagittis, tortor in tempus cursus, mi tortor pretium libero, non lobortis nisi neque eget sapien.'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -813,6 +857,7 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::nationality.nationality': ApiNationalityNationality;
       'api::person.person': ApiPersonPerson;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "person",
     "pluralName": "people",
-    "displayName": "person"
+    "displayName": "person",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,6 +19,19 @@
       "type": "integer",
       "max": 110,
       "min": 0
+    },
+    "nationality": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::nationality.nationality",
+      "inversedBy": "people"
+    },
+    "birthday": {
+      "type": "date"
+    },
+    "bio": {
+      "type": "richtext",
+      "default": "Proin eget bibendum est, at maximus nibh. Phasellus elementum, lorem et faucibus sodales, libero est dapibus sem, sed varius ipsum lectus eu quam. Donec dictum ultrices libero vitae iaculis. Nulla blandit erat rutrum ante pretium, eleifend pellentesque ligula vulputate. Nulla pellentesque dui porta quam commodo scelerisque. Phasellus non risus ac lacus scelerisque pretium. In elementum libero cursus, porttitor eros nec, semper metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed congue eget sapien id rutrum. Nullam vel magna sed purus dictum eleifend. Aenean euismod nibh felis, quis condimentum neque malesuada vitae. Nunc sagittis, tortor in tempus cursus, mi tortor pretium libero, non lobortis nisi neque eget sapien."
     }
   }
 }
